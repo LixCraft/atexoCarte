@@ -7,7 +7,10 @@ import com.atexo.cartes.service.GeneratorOrder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class GeneratorOrderImpl implements GeneratorOrder {
@@ -30,9 +33,9 @@ public class GeneratorOrderImpl implements GeneratorOrder {
     @Override
     public List<Card> generateCustomOrderCardByValueThenSymbol(List<CardValue> orderValues, List<CardSymbol> orderSymbols) {
         List<Card> customOrderCard = new ArrayList<>();
-        if(!CollectionUtils.isEmpty(orderValues) && !CollectionUtils.isEmpty(orderSymbols)){
-            for(CardValue cardValue : orderValues){
-                for(CardSymbol cardSymbol : orderSymbols){
+        if (!CollectionUtils.isEmpty(orderValues) && !CollectionUtils.isEmpty(orderSymbols)) {
+            for (CardValue cardValue : orderValues) {
+                for (CardSymbol cardSymbol : orderSymbols) {
                     customOrderCard.add(new Card(cardValue, cardSymbol));
                 }
             }

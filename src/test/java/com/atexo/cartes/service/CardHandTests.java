@@ -34,37 +34,37 @@ public class CardHandTests {
     private List<CardValue> randomCardValues;
 
     @BeforeEach
-    void generateVariables(){
-        randomCardSymbols =  generatorOrder.generateRandomCardSymbols();
+    void generateVariables() {
+        randomCardSymbols = generatorOrder.generateRandomCardSymbols();
         randomCardValues = generatorOrder.generateRandomCardValues();
     }
 
     @Test
-    void testGeneratorCardHand(){
-        try{
+    void testGeneratorCardHand() {
+        try {
             int numberHandCards = Integer.valueOf(10);
             List<Card> hands = cardHand.generateCardHand(numberHandCards);
             Set<Card> handsSet = new HashSet<>(hands);
             Assertions.assertEquals(numberHandCards, hands.size());
             //Check if not duplicate value
             Assertions.assertEquals(handsSet.size(), hands.size());
-        } catch(GamesException e ){
+        } catch (GamesException e) {
             Assertions.fail(e.getMessage());
         }
     }
 
     @Test
-    void testSortedCardHand(){
+    void testSortedCardHand() {
 
-        try{
+        try {
             int numberHandCards = Integer.valueOf(10);
             List<Card> hands = cardHand.generateCardHand(numberHandCards);
-            List<Card> sortedHandCards = cardHand.sortCardHandByValueSymbols(hands, randomCardValues, randomCardSymbols );
-            List<Card> refCustomOrder = generatorOrder.generateCustomOrderCardByValueThenSymbol( randomCardValues, randomCardSymbols);
-            for(int i = 0; i<numberHandCards-1; i++){
-                Assertions.assertTrue(refCustomOrder.indexOf(sortedHandCards.get(i)) < refCustomOrder.indexOf(sortedHandCards.get(i+1)));
+            List<Card> sortedHandCards = cardHand.sortCardHandByValueSymbols(hands, randomCardValues, randomCardSymbols);
+            List<Card> refCustomOrder = generatorOrder.generateCustomOrderCardByValueThenSymbol(randomCardValues, randomCardSymbols);
+            for (int i = 0; i < numberHandCards - 1; i++) {
+                Assertions.assertTrue(refCustomOrder.indexOf(sortedHandCards.get(i)) < refCustomOrder.indexOf(sortedHandCards.get(i + 1)));
             }
-        } catch(GamesException e ){
+        } catch (GamesException e) {
             Assertions.fail(e.getMessage());
         }
     }
